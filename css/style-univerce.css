@@ -4,11 +4,23 @@
   color: #222;
   font-family: sans-serif;
   line-height: 1.5;
+  background: #161623;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#f00, #f0f);
+  clip-path: circle(30% at right 70%); /*イラレのクリッピングマスク*/
 }
 
 main {
    /* background-color: #f8f8ff; */
-  background-color: #fffaf0;
+  /* background-color: #fffaf0; */
 }
 
 a {
@@ -86,14 +98,6 @@ img {
   font-size: 50px;
 }
 
-.header-utilites__text {
-  margin-left: 40px;
-}
-
-.header-utilites__text__inner {
-  font-family: 'Noto Serif JP', serif;
-}
-
 /* --title--animation-------------- */
 .wavy {
   position: relative;
@@ -122,6 +126,16 @@ img {
     transform: translateY(0px);
   }
 }
+
+
+
+/* .header-utilites__text {
+  margin-left: 40px;
+}
+
+.header-utilites__text__inner {
+  font-family: 'Noto Serif JP', serif;
+} */
 
 .header-nav {
   display: flex;
@@ -236,6 +250,33 @@ img {
   font-weight: bold;
 }
 
+
+/* --hover--animation----- */
+.hover--animation {
+  line-height: 1em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba( 255, 255, 255, 0.5);
+}
+
+.hover--animation::before {
+  content: attr(data-text);
+  position: absolute;
+  color: var(--clr);
+  width: 0;
+  overflow: hidden;
+  transition: 2s;
+  border-right: 2px solid var(--clr);
+  -webkit-text-stroke: 1px var(--clr);
+}
+
+.hover--animation:hover::before {
+  width: 100%;
+  filter: drop-shadow(0 0 25px var(--clr));
+}
+
+
 /* --content----------------------------------- */
 .content {
   max-width: 1230px;
@@ -264,7 +305,6 @@ img {
   position: absolute;
   top: 50%;
   width: 100%;
-  transform: translateY(-50%);
 }
 
 .card__body {
@@ -299,9 +339,47 @@ img {
   color: #222;
 }
 
-.card__link--toPage {
-  text-decoration: none;
-  color: #222;
+/* --border--roted---------------------------------- */
+.box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.box::before {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 200%;
+  background: linear-gradient(#00ccff, #d400d4);
+  animation: roated 4s linear infinite;
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  background: #0e1538;
+  inset: 4px;
+  border-radius: 16px;
+}
+
+@keyframes roated {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.box__inner {
+  position: relative;
+  color: #fff;
+  z-index: 10;
 }
 
 /* --3col---------------------------------- */
